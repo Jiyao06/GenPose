@@ -1,0 +1,14 @@
+CUDA_VISIBLE_DEVICES=1 python runners/trainer.py \
+--data_path NOCS_DATASET_PATH \
+--log_dir EnergyNet \
+--agent_type energy \
+--sampler_mode ode \
+--batch_size 192 \
+--eval_freq 1 \
+--n_epochs 200 \
+--selected_classes bottle bowl camera can laptop mug \
+--percentage_data_for_train 1.0 \
+--percentage_data_for_test 1.0 \
+--percentage_data_for_val 1.0 \
+--seed 0 \
+--is_train \
