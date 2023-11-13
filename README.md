@@ -111,7 +111,7 @@ bash scripts/eval_single.sh
 - ### Evaluate on CAMERA dataset.
 Set the parameter *--test_source* in *scripts/eval_single.sh* to *'val'* and run:
 ``` bash
-bash scripts_eval_pose_estimation.sh
+bash scripts/eval_single.sh
 ```
 
 ## Citation
