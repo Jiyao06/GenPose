@@ -1,6 +1,11 @@
 # GenPose: Generative Category-level Object Pose Estimation via Diffusion Models
 
-[[Website](https://sites.google.com/view/genpose)] [[Arxiv](https://arxiv.org/pdf/2306.10531.pdf)]
+
+[![Website](https://img.shields.io/badge/Website-orange.svg )](https://sites.google.com/view/genpose)
+[![Arxiv](https://img.shields.io/badge/Arxiv-green.svg )](https://arxiv.org/pdf/2306.10531.pdf)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FJiyao06%2FGenPose&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+[![GitHub license](https://img.shields.io/badge/License-Apache2.0-blue.svg)](https://github.com/Jiyao06/GenPose/blob/main/LICENSE)
+[![SOTA](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/genpose-generative-category-level-object-pose/6d-pose-estimation-using-rgbd-on-real275)](https://paperswithcode.com/sota/6d-pose-estimation-using-rgbd-on-real275?p=genpose-generative-category-level-object-pose)
 
 The official Pytorch implementation of the NeurIPS 2023 paper, [GenPose](https://arxiv.org/pdf/2306.10531.pdf).
 
@@ -9,29 +14,29 @@ The official Pytorch implementation of the NeurIPS 2023 paper, [GenPose](https:/
 ![Pipeline](./assets/pipeline.png)
 
 **(I)** A score-based diffusion model $\mathbf{\Phi}_{\theta}$ and an energy-based diffusion model $\mathbf{\Psi}_{\phi}$ is trained via denoising score-matching. 
-**(II)** a) We first generate pose candidates $\{\hat{\mathbf{p}}_i\}_{i=1}^K$ from the score-based model and then b) compute the pose energies $\mathbf{\Psi}_{\phi}(\hat{\mathbf{p}}_i, \epsilon| O^*)$ for candidates via the energy-based model. 
+**(II)** a) We first generate pose candidates $\{ \hat{\mathbf{p}}_i \}_{i=1}^K$ from the score-based model and then b) compute the pose energies $\mathbf{\Psi}_{\phi}(\hat{\mathbf{p}}_i, \epsilon| O^*)$ for candidates via the energy-based model. 
 c) Finally, we rank the candidates with the energies and then filter out low-ranking candidates. 
 The remaining candidates are aggregated into the final output by mean-pooling.
 
-
-- [GenPose: Generative Category-level Object Pose Estimation via Diffusion Models](#genpose--generative-category-level-object-pose-estimation-via-diffusion-models)
-  * [Abstract](#abstract)
-  * [Requirements](#requirements)
-  * [Installation](#installation)
-    + [Install pytorch](#install-pytorch)
-    + [Install pytorch3d from a local clone](#install-pytorch3d-from-a-local-clone)
-    + [Install from requirements.txt](#install-from-requirementstxt)
-    + [Compile pointnet2](#compile-pointnet2)
-  * [Download dataset and models](#download-dataset-and-models)
-  * [Training](#training)
-    + [Score network](#score-network)
-    + [Energy network](#energy-network)
-  * [Evaluation](#evaluation)
-    + [Evaluate on REAL275 dataset.](#evaluate-on-real275-dataset)
-    + [Evaluate on CAMERA dataset.](#evaluate-on-camera-dataset)
-  * [Citation](#citation)
-  * [Contact](#contact)
-  * [License](#license)
+Contents of this repo are as follows:
+<!-- - [GenPose: Generative Category-level Object Pose Estimation via Diffusion Models](#genpose--generative-category-level-object-pose-estimation-via-diffusion-models) -->
+* [Abstract](#abstract)
+* [Requirements](#requirements)
+* [Installation](#installation)
+  + [Install pytorch](#install-pytorch)
+  + [Install pytorch3d from a local clone](#install-pytorch3d-from-a-local-clone)
+  + [Install from requirements.txt](#install-from-requirementstxt)
+  + [Compile pointnet2](#compile-pointnet2)
+* [Download dataset and models](#download-dataset-and-models)
+* [Training](#training)
+  + [Score network](#score-network)
+  + [Energy network](#energy-network)
+* [Evaluation](#evaluation)
+  + [Evaluate on REAL275 dataset.](#evaluate-on-real275-dataset)
+  + [Evaluate on CAMERA dataset.](#evaluate-on-camera-dataset)
+* [Citation](#citation)
+* [Contact](#contact)
+* [License](#license)
 
 ## Requirements
 - Ubuntu 20.04
@@ -156,7 +161,11 @@ If you find our work useful in your research, please consider citing:
 ## Contact
 If you have any questions, please feel free to contact us:
 
-Jiyao Zhang: [jiyaozhang@stu.pku.edu.cn](mailto:jiyaozhang@stu.pku.edu.cn), Mingdong Wu: [wmingd@pku.edu.cn](mailto:wmingd@pku.edu.cn), Hao Dong: [hao.dong@pku.edu.cn](mailto:hao.dong@pku.edu.cn).
+[Jiyao Zhang](https://jiyao06.github.io/): [jiyaozhang@stu.pku.edu.cn](mailto:jiyaozhang@stu.pku.edu.cn)
+
+[Mingdong Wu](https://aaronanima.github.io/): [wmingd@pku.edu.cn](mailto:wmingd@pku.edu.cn)
+
+[Hao Dong](https://zsdonghao.github.io/): [hao.dong@pku.edu.cn](mailto:hao.dong@pku.edu.cn)
 
 ## License
 This project is released under the MIT license. See [LICENSE](LICENSE) for additional details.
