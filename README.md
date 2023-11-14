@@ -4,7 +4,7 @@
 [![Website](https://img.shields.io/badge/Website-orange.svg )](https://sites.google.com/view/genpose)
 [![Arxiv](https://img.shields.io/badge/Arxiv-green.svg )](https://arxiv.org/pdf/2306.10531.pdf)
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FJiyao06%2FGenPose&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
-[![GitHub license](https://img.shields.io/badge/License-Apache2.0-blue.svg)](https://github.com/Jiyao06/GenPose/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Jiyao06/GenPose/blob/main/LICENSE)
 [![SOTA](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/genpose-generative-category-level-object-pose/6d-pose-estimation-using-rgbd-on-real275)](https://paperswithcode.com/sota/6d-pose-estimation-using-rgbd-on-real275?p=genpose-generative-category-level-object-pose)
 
 The official Pytorch implementation of the NeurIPS 2023 paper, [GenPose](https://arxiv.org/pdf/2306.10531.pdf).
