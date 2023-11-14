@@ -1,10 +1,37 @@
-# GenPose: Generative Category-level Object Pose Estimation via Diffusion Models (NeurIPS 2023)
-This is the official Pytorch implementation of paper <a href="https://arxiv.org/pdf/2306.10531.pdf">GenPose: Generative Category-level Object Pose Estimation via Diffusion Models</a>. For more information about this paper, please refer to our <a href="https://sites.google.com/view/genpose">project page</a>.
+# GenPose: Generative Category-level Object Pose Estimation via Diffusion Models
 
-![Pipeline](/assets/pipeline.png)
+[[Website](https://sites.google.com/view/genpose)] [[Arxiv](https://arxiv.org/pdf/2306.10531.pdf)]
 
-## Abstract
-  Object pose estimation plays a vital role in embodied AI and computer vision, enabling intelligent agents to comprehend and interact with their surroundings. Despite the practicality of category-level pose estimation, current approaches encounter challenges with partially observed point clouds, known as the multi-hypothesis issue. In this study, we propose a novel solution by reframing category- level object pose estimation as conditional generative modeling, departing from traditional point-to-point regression. Leveraging score-based diffusion models, we estimate object poses by sampling candidates from the diffusion model and aggregating them through a two-step process: filtering out outliers via likelihood estimation and subsequently mean-pooling the remaining candidates. To avoid the costly integration process when estimating the likelihood, we introduce an alternative method that trains an energy-based model from the original score- based model, enabling end-to-end likelihood estimation. Our approach achieves state-of-the-art performance on the REAL275 dataset and demonstrates promising generalizability to novel categories sharing similar symmetric properties without fine-tuning. Furthermore, it can readily adapt to object pose tracking tasks, yielding comparable results to the current state-of-the-art baselines. 
+The official Pytorch implementation of the NeurIPS 2023 paper, [GenPose](https://arxiv.org/pdf/2306.10531.pdf).
+
+## Overview
+
+![Pipeline](./assets/pipeline.png)
+
+**(I)** A score-based diffusion model $\mathbf{\Phi}_{\theta}$ and an energy-based diffusion model $\mathbf{\Psi}_{\phi}$ is trained via denoising score-matching. 
+**(II)** a) We first generate pose candidates $\{\hat{\mathbf{p}}_i\}_{i=1}^K$ from the score-based model and then b) compute the pose energies $\mathbf{\Psi}_{\phi}(\hat{\mathbf{p}}_i, \epsilon| O^*)$ for candidates via the energy-based model. 
+c) Finally, we rank the candidates with the energies and then filter out low-ranking candidates. 
+The remaining candidates are aggregated into the final output by mean-pooling.
+
+
+- [GenPose: Generative Category-level Object Pose Estimation via Diffusion Models](#genpose--generative-category-level-object-pose-estimation-via-diffusion-models)
+  * [Abstract](#abstract)
+  * [Requirements](#requirements)
+  * [Installation](#installation)
+    + [Install pytorch](#install-pytorch)
+    + [Install pytorch3d from a local clone](#install-pytorch3d-from-a-local-clone)
+    + [Install from requirements.txt](#install-from-requirementstxt)
+    + [Compile pointnet2](#compile-pointnet2)
+  * [Download dataset and models](#download-dataset-and-models)
+  * [Training](#training)
+    + [Score network](#score-network)
+    + [Energy network](#energy-network)
+  * [Evaluation](#evaluation)
+    + [Evaluate on REAL275 dataset.](#evaluate-on-real275-dataset)
+    + [Evaluate on CAMERA dataset.](#evaluate-on-camera-dataset)
+  * [Citation](#citation)
+  * [Contact](#contact)
+  * [License](#license)
 
 ## Requirements
 - Ubuntu 20.04
@@ -119,9 +146,10 @@ If you find our work useful in your research, please consider citing:
 ``` bash
 @article{zhang2023genpose,
   title={GenPose: Generative Category-level Object Pose Estimation via Diffusion Models},
-  author={Zhang, Jiyao and Wu, Mingdong and Dong, Hao},
-  journal={Advances in neural information processing systems},
-  year={2023}
+  author={Jiyao Zhang and Mingdong Wu and Hao Dong},
+  booktitle={Thirty-seventh Conference on Neural Information Processing Systems},
+  year={2023},
+  url={https://openreview.net/forum?id=l6ypbj6Nv5}
 }
 ```
 
