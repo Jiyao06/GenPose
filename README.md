@@ -13,8 +13,8 @@ The official Pytorch implementation of the NeurIPS 2023 paper, [GenPose](https:/
 
 ![Pipeline](./assets/pipeline.png)
 
-**(I)** A score-based diffusion model $\mathbf{\Phi}_{\theta}$ and an energy-based diffusion model $\mathbf{\Psi}_{\phi}$ is trained via denoising score-matching. 
-**(II)** a) We first generate pose candidates $\{ \hat{\mathbf{p}}_i \}_{i=1}^K$ from the score-based model and then b) compute the pose energies $\mathbf{\Psi}_{\phi}(\hat{\mathbf{p}}_i, \epsilon| O^*)$ for candidates via the energy-based model. 
+**(I)** A score-based diffusion model and an energy-based diffusion model is trained via denoising score-matching. 
+**(II)** a) We first generate pose candidates from the score-based model and then b) compute the pose energies for candidates via the energy-based model. 
 c) Finally, we rank the candidates with the energies and then filter out low-ranking candidates. 
 The remaining candidates are aggregated into the final output by mean-pooling.
 
