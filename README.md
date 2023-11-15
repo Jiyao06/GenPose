@@ -20,7 +20,8 @@ The remaining candidates are aggregated into the final output by mean-pooling.
 
 Contents of this repo are as follows:
 <!-- - [GenPose: Generative Category-level Object Pose Estimation via Diffusion Models](#genpose--generative-category-level-object-pose-estimation-via-diffusion-models) -->
-* [Abstract](#abstract)
+* [Overview](#overview)
+* [TODO](#todo)
 * [Requirements](#requirements)
 * [Installation](#installation)
   + [Install pytorch](#install-pytorch)
