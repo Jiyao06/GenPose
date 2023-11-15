@@ -119,7 +119,7 @@ The *ckpts* are the trained models of GenPose.
 
 The *evaluation_results* are the preprocessed testing data, which contains the segmentation results of Mask R-CNN, the segmented pointclouds of obejcts, and the ground-truth poses. 
   
-The *mrcnn_results* are the segmentation results from <a href="https://drive.google.com/file/d/1p72NdY4Bie_sra9U8zoUNI4fTrQZdbnc/view">here</a> provided by <a href="https://github.com/mentian/object-deformnet">SPD</a>.
+The *mrcnn_results* are the segmentation results provided by <a href="https://github.com/mentian/object-deformnet">SPD</a>, and you also can find them <a href="https://drive.google.com/file/d/1p72NdY4Bie_sra9U8zoUNI4fTrQZdbnc/view">here</a>.
 
 **Note**: You need to preprocess the dataset as mentioned before first if you want to evaluate on CAMERA dataset.
 
