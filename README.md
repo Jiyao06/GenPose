@@ -79,7 +79,7 @@ python setup.py install
 ```
 
 ## Download dataset and models
-- Download camera_train, camera_val, real_train, real_test, ground-truth annotations and mesh models provided by <a href ="https://github.com/hughw19/NOCS_CVPR2019">NOCS</a>. Unzip and organize these files in $ROOT/data as follows:
+- Download camera_train, camera_val, real_train, real_test, ground-truth annotations and mesh models provided by <a href ="https://github.com/hughw19/NOCS_CVPR2019">NOCS</a> and unzip the data. Then move the file "mug_handle.pkl" from this repository's "data/Real/train" folder to the corresponding unzipped folders. The file "mug_handle.pkl" is provided by [GPV-Pose](https://github.com/lolrudy/GPV_Pose/blob/master/mug_handle.pkl). Organize these files in $ROOT/data as follows:
 ``` bash
 data
 ├── CAMERA
@@ -87,6 +87,8 @@ data
 │   └── val
 ├── Real
 │   ├── train
+│   │   ├── mug_handle.pkl
+│   │   └── ...
 │   └── test
 ├── gts
 │   ├── val
