@@ -38,6 +38,10 @@ Contents of this repo are as follows:
 * [Contact](#contact)
 * [License](#license)
 
+## TODO
+- Release the code for object pose tracking.
+- Release the preprocessed testing data for object pose tracking.
+
 ## Requirements
 - Ubuntu 20.04
 - Python 3.8.15
