@@ -7,7 +7,7 @@ CUDA_VISIBLE_DEVICES=0 python runners/evaluation_single.py \
 --percentage_data_for_test 1.0 \
 --batch_size 256 \
 --seed 0 \
---test_source val \
+--test_source real_test \
 --result_dir results \
 --eval_repeat_num 50 \
 --pooling_mode average \

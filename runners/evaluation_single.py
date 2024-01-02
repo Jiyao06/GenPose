@@ -306,15 +306,20 @@ def unpack_data(path):
     return detect_result, categorized_test_data
 
 
-def pred_pose_batch(score_agent:PoseNet, batch_sample, visualization_save_path, pose_mode):
+def pred_pose_batch(score_agent:PoseNet, batch_sample, visualization_save_path, pose_mode, return_process=False):
     ''' Predict poses '''
-    pred_pose = score_agent.pred_func(
+    pred_results = score_agent.pred_func(
         data=batch_sample, 
         repeat_num=cfg.eval_repeat_num, 
         save_path=visualization_save_path,
         T0=cfg.T0,
-        return_average_res=False
+        return_average_res=False,
+        return_process=return_process
     )
+    if return_process:
+        pred_pose = pred_results[0]
+    else:
+        pred_pose = pred_results
     
     ''' Transfer predicted poses to RTs '''
     RTs_all = np.ones((pred_pose.shape[0], pred_pose.shape[1], 4, 4))    #[bs, repeat_num, 4, 4]
@@ -326,7 +331,7 @@ def pred_pose_batch(score_agent:PoseNet, batch_sample, visualization_save_path, 
         RTs[:, :3, 3] = T.cpu().numpy()
         RTs_all[:, i, :, :] = RTs
     
-    return RTs_all, pred_pose
+    return RTs_all, pred_results
 
 
 def pred_energy_batch(energy_agent, batch_sample, pred_pose, pose_mode):  
@@ -348,7 +353,7 @@ def pred_energy_batch(energy_agent, batch_sample, pred_pose, pose_mode):
     return RTs_all, sorted_energy.cpu().numpy()
 
 
-def inference_pose(data_path, inference_res_dir, pose_mode):
+def inference_pose(data_path, inference_res_dir, pose_mode, record_process=False):
     ''' Create evaluation agent '''
     cfg.posenet_mode = 'score'
     score_agent = PoseNet(cfg)  
@@ -376,6 +381,8 @@ def inference_pose(data_path, inference_res_dir, pose_mode):
         index = [i * cfg.batch_size for i in range(0, num // cfg.batch_size + 1)]
         index = index if index[-1] == num else index + [num] 
         categorized_test_data[key]['pred_pose'] = []
+        if record_process:
+            categorized_test_data[key]['pred_pose_process'] = []
         
         print(f'Inferencing {key} category...')
         print(f'The num of instace is {num}!')
@@ -396,9 +403,13 @@ def inference_pose(data_path, inference_res_dir, pose_mode):
             batch_sample['pts_center'] = zero_mean
             ''' Predict poses '''
             video_save_path = f'{video_path[key]}/batch_{str(i)}'
-            pred_RTs, pred_pose = pred_pose_batch(score_agent, batch_sample, video_save_path, pose_mode)        
+            pred_RTs, pred_pose = pred_pose_batch(score_agent, batch_sample, video_save_path, pose_mode, record_process)     
             ''' Record results '''
-            categorized_test_data[key]['pred_pose'] += [pred_pose.cpu().numpy()[i] for i in range(pred_pose.shape[0])]
+            if record_process:
+                categorized_test_data[key]['pred_pose'] += [pred_pose[0].cpu().numpy()[i] for i in range(pred_pose[0].shape[0])]
+                categorized_test_data[key]['pred_pose_process'] += [pred_pose[1].cpu().numpy()[i] for i in range(pred_pose[1].shape[0])]
+            else:
+                categorized_test_data[key]['pred_pose'] += [pred_pose.cpu().numpy()[i] for i in range(pred_pose.shape[0])]
             img_path_list = categorized_test_data[key]['img_path'][index[i]:index[i+1]]
             inst_list = categorized_test_data[key]['inst'][index[i]:index[i+1]]
             for id, path in enumerate(img_path_list):
@@ -469,7 +480,9 @@ def inference_energy(inference_res_dir, pose_mode):
             for id, path in enumerate(img_path_list):
                 detect_result[path]['result']['multi_hypothesis_pred_RTs'][inst_list[id]] = sorted_pred_RTs[id]
                 detect_result[path]['result']['energy'][inst_list[id]] = sorted_energy[id]
-                
+                if 'pred_pose_process' in categorized_test_data[key].keys():
+                    detect_result[path]['result']['pred_pose_process'][inst_list[id]] = categorized_test_data[key]['pred_pose_process'][index[i]:index[i+1]][id]
+            
     result_save_path = os.path.join(inference_res_dir, 'results_with_energy.pkl')    
     with open(result_save_path, 'wb') as f:
         cPickle.dump(detect_result, f) 
@@ -542,7 +555,7 @@ def main():
     print('Detecting ...')
     detect_mrcnn_results(segmentation_results_path)
     print('Predict pose ...')
-    inference_pose(segmentation_results_path, inference_res_dir, cfg.pose_mode)   
+    inference_pose(segmentation_results_path, inference_res_dir, cfg.pose_mode, record_process=False)   
     print('Predict energy ...')
     inference_energy(inference_res_dir, cfg.pose_mode)
     print('Evaluating ...')

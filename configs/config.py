@@ -39,7 +39,7 @@ def get_config():
     parser.add_argument('--pts_encoder', type=str, default='pointnet2') 
     parser.add_argument('--energy_mode', type=str, default='IP') 
     parser.add_argument('--s_theta_mode', type=str, default='score') 
-    parser.add_argument('--norm_energy', type=str, default='identical') 
+    parser.add_argument('--norm_energy', type=str, default='identical')
     
     
     """ training """

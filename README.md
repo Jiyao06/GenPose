@@ -39,9 +39,9 @@ Contents of this repo are as follows:
 * [Contact](#contact)
 * [License](#license)
 
-## TODOs
-- [ ] Release the code for object pose tracking.
-- [ ] Release the preprocessed testing data for object pose tracking.
+## UPDATE
+- Release the code for object pose tracking.
+- Release the preprocessed data for object pose tracking.
 
 ## Requirements
 - Ubuntu 20.04
@@ -102,7 +102,7 @@ data
 
 - Preprocess NOCS files following <a  href ="https://github.com/mentian/object-deformnet">SPD</a>. 
 
-We provide the preprocessed testing data (REAL275) and checkpoints <a href="https://drive.google.com/file/d/1UrSVb7qYIOGWSB4z6W8IrBdRm-8M0Q-N/view?usp=sharing">here</a> for a quick evaluation. Download and organize the files in $ROOT/results as follows:
+We provide the preprocessed testing data (REAL275) and checkpoints <a href="https://drive.google.com/file/d/1L3yK0esjkmoe9bak9ISUUMkb8Y6y3O-1/view?usp=sharing">here</a> for a quick evaluation. Download and organize the files in $ROOT/results as follows:
 ``` bash
 results
 ├── ckpts
@@ -114,6 +114,7 @@ results
 │   ├── segmentation_logs_real_test.txt
 │   └── segmentation_results_real_test.pkl
 └── mrcnn_results
+    ├── aligned_real_test
     ├── real_test
     └── val
 ```
@@ -121,7 +122,7 @@ The *ckpts* are the trained models of GenPose.
 
 The *evaluation_results* are the preprocessed testing data, which contains the segmentation results of Mask R-CNN, the segmented pointclouds of obejcts, and the ground-truth poses. 
   
-The *mrcnn_results* are the segmentation results provided by <a href="https://github.com/mentian/object-deformnet">SPD</a>, and you also can find them <a href="https://drive.google.com/file/d/1p72NdY4Bie_sra9U8zoUNI4fTrQZdbnc/view">here</a>.
+The file *mrcnn_results* represents the segmentation results provided by <a href="https://github.com/mentian/object-deformnet">SPD</a>, and you also can find it <a href="https://drive.google.com/file/d/1p72NdY4Bie_sra9U8zoUNI4fTrQZdbnc/view">here</a>. Note that the file *mrcnn_results/aligned_real_test* contains the manually aligned segmentation results, used for object pose tracking.
 
 **Note**: You need to preprocess the dataset as mentioned before first if you want to evaluate on CAMERA dataset.
 
@@ -140,7 +141,7 @@ bash scripts/train_energy.sh
 ```
 
 ## Evaluation
-Set the parameter *--data_path* in *scripts/eval_single.sh* to your own path of NOCS dataset.
+Set the parameter *--data_path* in *scripts/eval_single.sh* and *scripts/eval_tracking* to your own path of NOCS dataset.
 
 - ### Evaluate on REAL275 dataset.
 Set the parameter *--test_source* in *scripts/eval_single.sh* to *'real_test'* and run:
@@ -151,6 +152,10 @@ bash scripts/eval_single.sh
 Set the parameter *--test_source* in *scripts/eval_single.sh* to *'val'* and run:
 ``` bash
 bash scripts/eval_single.sh
+```
+- ### Pose tracking on REAL275 dataset.
+``` bash
+bash scripts/eval_tracking.sh
 ```
 
 ## Citation
