@@ -102,7 +102,7 @@ data
 
 - Preprocess NOCS files following <a  href ="https://github.com/mentian/object-deformnet">SPD</a>. 
 
-We provide the preprocessed testing data (REAL275) and checkpoints <a href="https://drive.google.com/file/d/1L3yK0esjkmoe9bak9ISUUMkb8Y6y3O-1/view?usp=sharing">here</a> for a quick evaluation. Download and organize the files in $ROOT/results as follows:
+We provide the preprocessed testing data (REAL275) and checkpoints <a href="https://drive.google.com/drive/folders/1DhPIzpCIgWaw86BtwPK05-GmvAkgpsJY?usp=sharing">here</a> for a quick evaluation. Download and organize the files in $ROOT/results as follows:
 ``` bash
 results
 ├── ckpts
