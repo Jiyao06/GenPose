@@ -161,12 +161,12 @@ bash scripts/eval_tracking.sh
 ## Citation
 If you find our work useful in your research, please consider citing:
 ``` bash
-@article{zhang2023genpose,
-  title={GenPose: Generative Category-level Object Pose Estimation via Diffusion Models},
-  author={Jiyao Zhang and Mingdong Wu and Hao Dong},
-  booktitle={Thirty-seventh Conference on Neural Information Processing Systems},
-  year={2023},
-  url={https://openreview.net/forum?id=l6ypbj6Nv5}
+@article{zhang2024generative,
+  title={Generative category-level object pose estimation via diffusion models},
+  author={Zhang, Jiyao and Wu, Mingdong and Dong, Hao},
+  journal={Advances in Neural Information Processing Systems},
+  volume={36},
+  year={2024}
 }
 ```
 
