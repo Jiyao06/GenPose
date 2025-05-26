@@ -9,6 +9,12 @@
 
 The official Pytorch implementation of the NeurIPS 2023 paper, [GenPose](https://arxiv.org/pdf/2306.10531.pdf).
 
+
+## News
+- **2024/08**: [Omni6DPoseAPI](https://github.com/Omni6DPose/Omni6DPoseAPI) and [genpose++](https://github.com/Omni6DPose/GenPose2) are released! 
+- **2024/07** [Omni6DPose](https://jiyao06.github.io/Omni6DPose/), the largest and most diverse universal 6D object pose estimation benchmark, gets accepted to ECCV 2024.
+- **2023/09**: GenPose gets accepted to NeurIPS 2023
+
 ## Overview
 
 ![Pipeline](./assets/pipeline.png)
